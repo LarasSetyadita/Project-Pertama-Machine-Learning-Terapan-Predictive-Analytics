@@ -28,7 +28,7 @@ sehingga intervensi dapat dilakukan lebih cepat dan tepat sasaran.
 Berdasarkan latar belakang yang telah disampaikan, terdapat beberapa rumusan masalah yang akan diselesaikan pada proyek ini : 
 1. Faktor apa saja yang memengaruhi tingkat resiko penyakit mental pada individu.
 2. Bagaimana cara membangun model machine learning untuk melakukan klasifikasi tingkat resiko penyakit mental?
-3. Bagaimana cara memilih model machine learning dengan akurasi terbaik untuk masalah prediksi resiko penyakit mental?
+3. Bagaimana cara memilih model machine learning dengan akurasi, precision, recall, dan F1-score terbaik untuk masalah prediksi resiko penyakit mental?
 
 ### Goals
 Proyek ini dibangun dengan tujuan:
