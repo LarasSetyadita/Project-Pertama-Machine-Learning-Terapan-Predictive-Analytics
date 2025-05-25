@@ -111,7 +111,7 @@ Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel se
 - Fitur lain seperti gender, employment_status, work_environtment, dan mental_health_history tidak menunjukkan hubungan statistik yang signifikan terhadap fitur mental_health_risk. Hal ini dapat diartikan bahwa faktor-faktor tersebut tidak cukup kuat untuk membedakan tingkat resiko kesehatan mental pada individu.
 
 ##### Kolom Numerik
-![Grafik Multivariate Categorical Data](./gambar/multivariate_numeric.png)
+
 - Pada fitur age, tidak terdapat kalangan umur tertentu yang memiliki kecenderungan resiko kesehatan mental kategori high, medium, maupun low.
 - Pada fitur stress_level, variasi stress pada setiap individu di dalam kategori mental_health_risk cenderung mirip, namun tingkat stress secara umum (berdasarkan median) pada fitur mental_health_risk kategori low cenderung memiliki tingkat stress yang lebih rendah.
 - Pada fitur sleep_hours, tidak terdapat waktu tidur tertentu yang memiliki kecenderungan kesehatan mental kategori high, medium, maupun low.
