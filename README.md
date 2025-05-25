@@ -80,7 +80,7 @@ Dataset yang digunakan terdiri dari 10.000 rows data dan 14 columns:
 Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel secara individual. Beberapa temuan awal:
 
 ##### Kolom Categorical 
-
+![Grafik Univariate Numeric Data](./gambar/univariate_categorical.png)
 - Terdapat 4 kategori dalam fitur gender yang didominasi dengan kategori Male dan Female dengan perbandingan yang cukup seimbang. 
 - Terdapat 4 kategori dalam fitur employment, secara berurutan dari yang paling banyak adalah employed, kemudian diikuti student, self emoployed, dan yang paling sedikit adalah unemployed.
 - Terdapat 3 kategori dalam fitur work_environtment. secara berurutan dari yang paling banyak adalah onsite, Remote, dan Hybrid.
