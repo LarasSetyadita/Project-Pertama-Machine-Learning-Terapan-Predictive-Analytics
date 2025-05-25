@@ -35,7 +35,7 @@ Proyek ini dibangun dengan tujuan:
 1. mengetahui variabel dan fitur yang berpengaruh terhadap tingkat resiko kesehatan mental individu.
 2. mengetahui cara membangun model machine learning untuk melakukan klasifikasi tingkat kesehatan mental individu 
 berdasarkan data.
-3. Mengevaluasi dan membandingkan model berdasarkan akurasi pada data training dan testing, untuk menentukan model yang 
+3. Mengevaluasi dan membandingkan model berdasarkan akurasi, precision, recall, dan F1-score terbaik, untuk menentukan model yang 
 paling optimal.
 
 ### Solution Statements
