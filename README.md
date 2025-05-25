@@ -101,21 +101,9 @@ Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel se
 <img src="./gambar/multivariate_categorical.png" width="500"/>
 
 - Pada fitur gender, resiko kesehatan mental cenderung merata di semua gender dengan mayoritas berada pada resiko sedang, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
-
-<img src="./gambar/multivariate_categorical2.png" width="500"/>
-
 - Pada fitur employment status, resiko kesehatan mental pada setiap kategori cenderung merata, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
-
-<img src="./gambar/multivariate_categorical3.png" width="500"/>
-
 - Pada fitur employment_environtment, resiko kesehatan mental pada setiap kategori juga cenderung merata, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
-
-<img src="./gambar/multivariate_categorical4.png" width="500"/>
-
 - Pada fitur mental_health_history, resiko kesehatan mental pada setiap kategori cenderung merata, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
-
-<img src="./gambar/multivariate_categorical5.png" width="500"/>
-
 - Pada fitur seeks_treatment, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
 <br/>
 <br/>
