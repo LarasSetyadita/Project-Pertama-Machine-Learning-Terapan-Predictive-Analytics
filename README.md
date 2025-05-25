@@ -95,7 +95,7 @@ Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel se
 ##### Kolom Numerik
 ![Grafik Univariate Numeric Data](./gambar/univariate_numeric.png)
 - Data pada kolom stress_level, age, physical_activity_days, anxiety_score, dan social_support_score cenderung memiliki presebaran yang merata.
-- Terdapat peningkatan jumlah yang signifikan pada data fitur depression_rate dengan score 30.
+- Terdapat peningkatan jumlah yang signifikan pada data fitur depression_score pada nilai maksimal (30).
 - Terdapat peningkatan jumlah yang signifikan pada data fitur productivity_score pada nilai maksimal (100).
 - Data sleep_hours cenderung terdistribusi normal.
 
