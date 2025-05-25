@@ -179,6 +179,7 @@ waktu pelatihan yang lebih lambat dibandingkan beberapa metode lain karena prose
 
 ## Evaluasi
 ![Grafik Akurasi Model](./gambar/accuracy2.png)
+
 Evaluasi model dilakukan menggunakan metric accuracy, precision, Recall, dan F1-score untuk mengukur performa dari 
 masing-masing model yang digunakan yaitu KNN, Random Forest, dan Boosting Algorithm. 
 Berdasarkan hasil akurasi didapatkan informasi sebagai berikut:
