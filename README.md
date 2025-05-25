@@ -149,7 +149,7 @@ kemampuan model untuk memprediksi data baru yang belum pernah dilihat sebelumnya
 
 Evaluasi model menunjukkan bahwa akurasi tertinggi, baik pada data training dan data testing, 
 dicapai oleh model random forest dengan tingkat akurasi mencapai 100% untuk data training dan 99% untuk data testing, kemudian disusul oleh model KNN dengan akurasi sebesar 95% pada data training dan data testing, serta akurasi terendah berada pada model Boosting Algorithm dengan tingkat akurasi 59%. 
-![Grafik Akurasi Model](./gambar/accuracy.png)
+
 ## Referensi
 
 [1] Kementerian Kesehatan Republik Indonesia, *Laporan Tematik Survei Kesehatan Indonesia Tahun 2023: Potret Indonesia Sehat*, Jakarta: Kementerian Kesehatan RI, 2024. Diterbitkan oleh Kementerian Kesehatan RI dan dikeluarkan oleh Badan Kebijakan Pembangunan Kesehatan. [Online]. Available: https://drive.google.com/file/d/1AnuDQgQufa5JSXEJWpBSv4r7v6d5YZm7/view. [Accessed: May 24, 2025].
