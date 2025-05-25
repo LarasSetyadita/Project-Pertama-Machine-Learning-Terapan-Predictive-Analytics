@@ -72,12 +72,15 @@ Dataset yang digunakan terdiri dari 10.000 rows data dan 14 columns:
 - Data Integer =  age, stress_level, physical_activity_days, depression_score, anxiety_score, social_support_score.
 - Data Float = sleep_hours, productivity_score
 - Data Object = gender, employment_status, work_environment, mental_health_history, seeks_treatment, mental_health_risk
-
+### Missing Value, Data Duplikat dan Outlier
+- tidak ditemukan missing value di dalam dataset
+- tidak ditemukan outlier di dalam dataset
+- tidak ditemukan data duplikat di dalam dataset
 ### EDA - Univariate Analysis
 Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel secara individual. Beberapa temuan awal:
 
 ##### Kolom Categorical 
-![Grafik Univariate Categorical Data](/gambar/univariate_categorical.png)
+
 - Terdapat 4 kategori dalam fitur gender yang didominasi dengan kategori Male dan Female dengan perbandingan yang cukup seimbang. 
 - Terdapat 4 kategori dalam fitur employment, secara berurutan dari yang paling banyak adalah employed, kemudian diikuti student, self emoployed, dan yang paling sedikit adalah unemployed.
 - Terdapat 3 kategori dalam fitur work_environtment. secara berurutan dari yang paling banyak adalah onsite, Remote, dan Hybrid.
@@ -86,7 +89,7 @@ Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel se
 - Terdapat 3 kategori dalam fitur mental_health_risk. Secara berurutan dari yang terbesar adalah medium sebesar 58,9% high sebesar 23,7%, dan low sebesar 17,4%.
 
 ##### Kolom Numerik
-![Grafik Univariate Numeric Data](/gambar/univariate_numeric.png)
+![Grafik Univariate Numeric Data](./gambar/univariate_numeric.png)
 - Data pada kolom stress_level, age, physical_activity_days, anxiety_score, dan social_support_score cenderung memiliki presebaran yang merata.
 - Terdapat peningkatan jumlah yang signifikan pada data fitur depression_rate dengan score 30.
 - Terdapat peningkatan jumlah yang signifikan pada data fitur productivity_score pada nilai maksimal (100).
@@ -95,23 +98,23 @@ Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel se
 ### EDA - Multivariate Analysis
 
 ##### Kolom Categorical
-<img src="/gambar/multivariate_categorical.png" width="500"/>
+<img src="./gambar/multivariate_categorical.png" width="500"/>
 
 - Pada fitur gender, resiko kesehatan mental cenderung merata di semua gender dengan mayoritas berada pada resiko sedang, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
 
-<img src="/gambar/multivariate_categorical2.png" width="500"/>
+<img src="./gambar/multivariate_categorical2.png" width="500"/>
 
 - Pada fitur employment status, resiko kesehatan mental pada setiap kategori cenderung merata, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
 
-<img src="/gambar/multivariate_categorical3.png" width="500"/>
+<img src="./gambar/multivariate_categorical3.png" width="500"/>
 
 - Pada fitur employment_environtment, resiko kesehatan mental pada setiap kategori juga cenderung merata, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
 
-<img src="/gambar/multivariate_categorical4.png" width="500"/>
+<img src="./gambar/multivariate_categorical4.png" width="500"/>
 
 - Pada fitur mental_health_history, resiko kesehatan mental pada setiap kategori cenderung merata, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
 
-<img src="/gambar/multivariate_categorical5.png" width="500"/>
+<img src="./gambar/multivariate_categorical5.png" width="500"/>
 
 - Pada fitur seeks_treatment, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
 <br/>
@@ -120,7 +123,7 @@ Analisis univariat dilakukan untuk memahami distribusi masing-masing variabel se
 - Fitur lain seperti gender, employment_status, work_environtment, dan mental_health_history tidak menunjukkan hubungan statistik yang signifikan terhadap fitur mental_health_risk. Hal ini dapat diartikan bahwa faktor-faktor tersebut tidak cukup kuat untuk membedakan tingkat resiko kesehatan mental pada individu.
 
 ##### Kolom Numerik
-![Grafik Multivariate Categorical Data](/gambar/multivariate_numeric.png)
+![Grafik Multivariate Categorical Data](./gambar/multivariate_numeric.png)
 - Pada fitur age, tidak terdapat kalangan umur tertentu yang memiliki kecenderungan resiko kesehatan mental kategori high, medium, maupun low.
 - Pada fitur stress_level, variasi stress pada setiap individu di dalam kategori mental_health_risk cenderung mirip, namun tingkat stress secara umum (berdasarkan median) pada fitur mental_health_risk kategori low cenderung memiliki tingkat stress yang lebih rendah.
 - Pada fitur sleep_hours, tidak terdapat waktu tidur tertentu yang memiliki kecenderungan kesehatan mental kategori high, medium, maupun low.
@@ -158,7 +161,7 @@ kemampuan model untuk memprediksi data baru yang belum pernah dilihat sebelumnya
 
 Evaluasi model menunjukkan bahwa akurasi tertinggi, baik pada data training dan data testing, 
 dicapai oleh model random forest dengan tingkat akurasi mencapai 100% untuk data training dan 99% untuk data testing, kemudian disusul oleh model KNN dengan akurasi sebesar 95% pada data training dan data testing, serta akurasi terendah berada pada model Boosting Algorithm dengan tingkat akurasi 59%. 
-![Grafik Akurasi Model](/gambar/accuracy.png)
+![Grafik Akurasi Model](./gambar/accuracy.png)
 ## Referensi
 
 [1] Kementerian Kesehatan Republik Indonesia, *Laporan Tematik Survei Kesehatan Indonesia Tahun 2023: Potret Indonesia Sehat*, Jakarta: Kementerian Kesehatan RI, 2024. Diterbitkan oleh Kementerian Kesehatan RI dan dikeluarkan oleh Badan Kebijakan Pembangunan Kesehatan. [Online]. Available: https://drive.google.com/file/d/1AnuDQgQufa5JSXEJWpBSv4r7v6d5YZm7/view. [Accessed: May 24, 2025].

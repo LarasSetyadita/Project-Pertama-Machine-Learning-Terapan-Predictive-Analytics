@@ -13,6 +13,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 from scipy.stats import chi2_contingency
 
@@ -22,7 +23,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
 
 """## Data Loading"""
 
@@ -105,6 +106,14 @@ plt.show()
 """insight
 - tidak ditemukan data dengan outliers
 
+memeriksa data duplikat
+"""
+
+jumlah_duplikat = student_df.duplicated().sum()
+print(f"Jumlah data duplikat: {jumlah_duplikat}")
+
+"""tidak ditemukan data duplikat
+
 ### Univariate Analysis
 """
 
@@ -124,22 +133,26 @@ for col in categorical_features:
 
 """melakukan univariate analysis pada data categorical"""
 
-for col in categorical_features:
+n_features = len(categorical_features)
+n_cols = 3
+n_rows = math.ceil(n_features / n_cols)
+
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(5 * n_cols, 4 * n_rows))
+axes = axes.flatten()
+
+for i, col in enumerate(categorical_features):
     count = student_df[col].value_counts()
-    percent = 100 * student_df[col].value_counts(normalize=True)
-    df = pd.DataFrame({'Jumlah sampel': count, 'Persentase (%)': percent.round(1)})
+    count.plot(kind='bar', color='pink', ax=axes[i])
+    axes[i].set_title(col, fontsize=14)
+    axes[i].set_ylabel("Jumlah", fontsize=12)
+    axes[i].tick_params(axis='x', rotation=45, labelsize=10)
+    axes[i].tick_params(axis='y', labelsize=10)
 
-    print(f"\n{col}:\n", df)
+for j in range(i+1, len(axes)):
+    fig.delaxes(axes[j])
 
-    # Buat plot baru untuk setiap fitur
-    plt.figure(figsize=(6, 4))
-    count.plot(kind='bar', color='pink')
-    plt.title(col, fontsize=14)
-    plt.ylabel("Jumlah", fontsize=12)
-    plt.xticks(rotation=45, fontsize=10)
-    plt.yticks(fontsize=10)
-    plt.tight_layout()
-    plt.show()
+plt.tight_layout()
+plt.show()
 
 """insight
 - Terdapat 4 kategori dalam fitur gender yang didominasi dengan kategori Male dan Female dengan perbandingan yang cukup seimbang.
@@ -176,10 +189,24 @@ plt.show()
 
 cat_features = ['gender', 'employment_status', 'work_environment', 'mental_health_history', 'seeks_treatment']
 
-for col in cat_features:
-    sns.catplot(x=col, hue='mental_health_risk', kind='count', height=4, aspect=3, data=student_df, palette='Set3')
-    plt.title("Distribusi 'mental_health_risk' berdasarkan {}".format(col))
-    plt.xticks(rotation=45)
+n_features = len(cat_features)
+n_cols = 3
+n_rows = math.ceil(n_features / n_cols)
+
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(7 * n_cols, 5 * n_rows))
+axes = axes.flatten()
+
+for i, col in enumerate(cat_features):
+    sns.countplot(x=col, hue='mental_health_risk', data=student_df, palette='Set3', ax=axes[i])
+    axes[i].set_title(f"Distribusi 'mental_health_risk' berdasarkan {col}", fontsize=14)
+    axes[i].tick_params(axis='x', rotation=45)
+
+
+for j in range(i + 1, len(axes)):
+    fig.delaxes(axes[j])
+
+plt.tight_layout()
+plt.show()
 
 """insight
 - pada fitur gender, resiko kesehatan mental cenderung merata di semua gender dengan mayoritas berada pada resiko sedang, tidak ada kategori tertentu yang cenderung memiliki resiko kesehatan mental high, medium, maupun low.
@@ -296,27 +323,23 @@ X_train[numeric_features].describe().round(4)
 membuat dataframe untuk menyimpan akurasi
 """
 
-models = pd.DataFrame(index=['train_accuracy', 'test_accuracy'],
-                      columns=['KNN', 'RandomForest', 'Boosting'])
+metrics = ['Accuracy', 'Precision', 'Recall', 'F1-score']
+model_names = ['KNN', 'RandomForest', 'Boosting']
+models_df = pd.DataFrame(index=metrics, columns=model_names)
 
 """### KNN
 
 membangun model knn
 """
 
-# Inisialisasi model KNN klasifikasi dengan 10 tetangga
 model_knn = KNeighborsClassifier(n_neighbors=10)
 model_knn.fit(X_train, y_train)
+y_pred_knn = model_knn.predict(X_test)
 
-# Prediksi pada data train
-y_train_pred = model_knn.predict(X_train)
-
-# Hitung akurasi pada data train
-train_accuracy = accuracy_score(y_train, y_train_pred)
-
-# Simpan hasil akurasi di DataFrame models (misal models sudah ada)
-models.loc['train_accuracy', 'KNN'] = train_accuracy
-models.loc['test_accuracy', 'KNN'] = accuracy_score(y_test, model_knn.predict(X_test))
+models_df.loc['Accuracy', 'KNN'] = accuracy_score(y_test, y_pred_knn)
+models_df.loc['Precision', 'KNN'] = precision_score(y_test, y_pred_knn, average='weighted')
+models_df.loc['Recall', 'KNN'] = recall_score(y_test, y_pred_knn, average='weighted')
+models_df.loc['F1-score', 'KNN'] = f1_score(y_test, y_pred_knn, average='weighted')
 
 """### Random Forest
 
@@ -325,101 +348,74 @@ membangun model random forest
 
 model_RF = RandomForestClassifier(n_estimators=50, max_depth=16, random_state=55, n_jobs=-1)
 model_RF.fit(X_train, y_train)
+y_pred_rf = model_RF.predict(X_test)
 
-models.loc['train_accuracy', 'RandomForest'] = accuracy_score(y_train, model_RF.predict(X_train))
-models.loc['test_accuracy', 'RandomForest'] = accuracy_score(y_test, model_RF.predict(X_test))
+models_df.loc['Accuracy', 'RandomForest'] = accuracy_score(y_test, y_pred_rf)
+models_df.loc['Precision', 'RandomForest'] = precision_score(y_test, y_pred_rf, average='weighted')
+models_df.loc['Recall', 'RandomForest'] = recall_score(y_test, y_pred_rf, average='weighted')
+models_df.loc['F1-score', 'RandomForest'] = f1_score(y_test, y_pred_rf, average='weighted')
 
 """### Bosting Algorithm
 
 membangun model Boosting Algorithm
 """
 
-# Inisialisasi model AdaBoost untuk klasifikasi
 model_boosting = AdaBoostClassifier(learning_rate=0.05, random_state=55)
 model_boosting.fit(X_train, y_train)
+y_pred_boost = model_boosting.predict(X_test)
 
-# Prediksi pada data train
-y_train_pred = model_boosting.predict(X_train)
-
-# Hitung akurasi pada data train
-train_accuracy = accuracy_score(y_train, y_train_pred)
-
-# Simpan hasil akurasi ke DataFrame models (misal models sudah ada)
-models.loc['train_accuracy', 'Boosting'] = train_accuracy
-models.loc['test_accuracy', 'Boosting'] = accuracy_score(y_test, model_boosting.predict(X_test))
+models_df.loc['Accuracy', 'Boosting'] = accuracy_score(y_test, y_pred_boost)
+models_df.loc['Precision', 'Boosting'] = precision_score(y_test, y_pred_boost, average='weighted')
+models_df.loc['Recall', 'Boosting'] = recall_score(y_test, y_pred_boost, average='weighted')
+models_df.loc['F1-score', 'Boosting'] = f1_score(y_test, y_pred_boost, average='weighted')
 
 """## Evaluasi
 
 evaluasi
 """
 
-X_test[numeric_features] = pd.DataFrame(
-    scaler.transform(X_test[numeric_features]),
-    index=X_test.index,
-    columns=numeric_features
-)
-
-model_dict = {
-    'KNN': model_knn,
-    'RF': model_RF,
-    'Boosting': model_boosting
-}
-
-"""memeriksa akurasi model knn"""
-
-y_test_pred = model_knn.predict(X_test)
-test_accuracy = accuracy_score(y_test, y_test_pred)
-print("Accuracy:", test_accuracy)
-
-"""memeriksa akurasi model random forest"""
-
-y_pred = model_RF.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
-
-"""memeriksa akurasi model boosting Algorithm"""
-
-y_test_pred = model_boosting.predict(X_test)
-test_accuracy = accuracy_score(y_test, y_test_pred)
-models.loc['test_accuracy', 'Boosting'] = test_accuracy
-print("Accuracy:", test_accuracy)
+print(models_df)
 
 """visualisasi akurasi"""
 
-model_names = models.columns.tolist()
+colors = ['pink', 'lightpink', 'hotpink', 'deeppink']
 
-# Ambil nilai akurasi dan ubah ke float
-train_accuracies = models.loc['train_accuracy'].astype(float).values
-test_accuracies = models.loc['test_accuracy'].astype(float).values
+x = np.arange(len(model_names))  # posisi label x
+width = 0.2  # lebar bar
 
-# Tentukan posisi sumbu x
-x = np.arange(len(model_names))
-width = 0.35  # lebar masing-masing bar
+plt.figure(figsize=(12, 7))
 
-# Buat plot
-plt.figure(figsize=(10, 6))
-plt.bar(x - width/2, train_accuracies, width, label='Train Accuracy', color='lightblue')
-plt.bar(x + width/2, test_accuracies, width, label='Test Accuracy', color='salmon')
+# Buat bar chart dengan warna yang berbeda untuk setiap metrik
+for i, (metric, color) in enumerate(zip(metrics, colors)):
+    plt.bar(x + (i - 1.5) * width, models_df.loc[metric], width, label=metric, color=color)
 
-# Tambahkan label dan judul
 plt.xlabel('Model')
-plt.ylabel('Accuracy')
-plt.title('Train vs Test Accuracy per Model')
+plt.ylabel('Score')
+plt.title('Model Evaluation Metrics')
 plt.xticks(x, model_names)
-plt.ylim(0, 1)
+plt.ylim(0, 1.0)
+plt.legend()
 plt.tight_layout()
-
-# Tampilkan grafik
 plt.show()
 
 """mencoba prediksi"""
 
+model_dict = {
+    'KNN': model_knn,
+    'RandomForest': model_RF,
+    'Boosting': model_boosting
+}
+
 prediksi = X_test.iloc[:1].copy()
-pred_dict = {'y_true': y_test[:1].values}
+
+pred_dict = {
+    'y_true': y_test.iloc[:1].values[0]
+}
 
 for name, model in model_dict.items():
-    pred_dict['prediksi_' + name] = model.predict(prediksi)
+    pred_dict['prediksi_' + name] = model.predict(prediksi)[0]
 
-pd.DataFrame(pred_dict)
+hasil_prediksi = pd.DataFrame([pred_dict])
+print(hasil_prediksi)
 
-"""Model terbaik adalah model Random Forest yang menghasilkan tingkat akurasi tertinggi jika dibandingkan dengan model Boosting dan KNN."""
+"""Model terbaik adalah model KNN yang menghasilkan tingkat akurasi tertinggi jika dibandingkan dengan model Boosting dan Random Forest."""
