@@ -193,7 +193,7 @@ n_features = len(cat_features)
 n_cols = 3
 n_rows = math.ceil(n_features / n_cols)
 
-fig, axes = plt.subplots(n_rows, n_cols, figsize=(7 * n_cols, 5 * n_rows))
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(20, 10))
 axes = axes.flatten()
 
 for i, col in enumerate(cat_features):
@@ -306,7 +306,10 @@ print(f'Total # of sample in whole dataset: {len(X)}')
 print(f'Total # of sample in train dataset: {len(X_train)}')
 print(f'Total # of sample in test dataset: {len(X_test)}')
 
-"""### Standarization"""
+"""### Standarization
+
+standarization data train
+"""
 
 numeric_features = ['physical_activity_days', 'depression_score', 'anxiety_score', 'productivity_score']
 scaler = StandardScaler()
@@ -317,6 +320,14 @@ X_train[numeric_features].head()
 """memeriksa data fitur train"""
 
 X_train[numeric_features].describe().round(4)
+
+"""standarization data test"""
+
+scaler.fit(X_test[numeric_features])
+X_test[numeric_features] = scaler.transform(X_test.loc[:, numeric_features])
+X_test[numeric_features].head()
+
+X_test[numeric_features].describe().round(4)
 
 """## Modeling
 
@@ -418,4 +429,9 @@ for name, model in model_dict.items():
 hasil_prediksi = pd.DataFrame([pred_dict])
 print(hasil_prediksi)
 
-"""Model terbaik adalah model KNN yang menghasilkan tingkat akurasi tertinggi jika dibandingkan dengan model Boosting dan Random Forest."""
+"""Model terbaik model dengan algoritma random forest yang menghasilkan akurasi, precision, f1-score, dan recall tertinggi, yaitu seluruhnya sebesar 99,4%.
+
+Model kedua terbaik adalah KNN yang menghasilkan akurasi, precision, f1-score, dan recall tidak berbeda jauh dengan random forest yaitu semuanya sebesar 97,6%.
+
+Model terburuk untuk studi kasus ini adalah model yang dibangun dengan algoritma Boosting yang menghasilkan akurasi, precision, f1-score dan recall yang cukup rendah, yaitu secara berturut-turut 59,3%; 35,1%; 44,1%; dan 59,3%.
+"""
