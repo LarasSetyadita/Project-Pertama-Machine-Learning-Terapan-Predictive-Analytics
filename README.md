@@ -183,16 +183,14 @@ waktu pelatihan yang lebih lambat dibandingkan beberapa metode lain karena prose
 Evaluasi model dilakukan menggunakan metric accuracy, precision, Recall, dan F1-score untuk mengukur performa dari 
 masing-masing model yang digunakan yaitu KNN, Random Forest, dan Boosting Algorithm. 
 Berdasarkan hasil akurasi didapatkan informasi sebagai berikut:
-- KNN menjadi model dengan akurasi tertinggi sebesar 60,2% diikuti oleh Boosting sebesar 59,3% sementara Random forest 
-hanya memperoleh akurasi sebesar 23,8%.
-- KNN dan Boosting mencapai recall yang relatif sama dengan akurasi yaitu 60,2% dan 59,3%.
-- Precision model KNN sebesar 52,98% menunjukkan bahwa, secara rata-rata, sekitar 52,98% dari prediksi yang dibuat oleh 
-model KNN untuk masing-masing kelas (high, medium, dan low) adalah benar. Ini berarti lebih dari separuh prediksi yang 
-diberikan model sesuai dengan label aslinya, meskipun masih terdapat ketidakseimbangan akurasi antar kelas.
-- Namun, F1-score KNN (46,1%) lebih tinggi dibandingkan Boosting (44,1%), menunjukkan keseimbangan yang sedikit lebih 
-baik antara Precision dan Recall.
-- Random Forest menunjukkan performa terburuk di semua metrik, terutama F1-score hanya 10%, yang menandakan 
-ketidakseimbangan prediksi dan kegagalan menangkap pola yang relevan.
+- Model terbaik model dengan algoritma random forest yang menghasilkan akurasi, precision, f1-score, dan recall tertinggi, 
+yaitu seluruhnya sebesar 99,4%.
+
+- Model kedua terbaik adalah KNN yang menghasilkan akurasi, precision, f1-score, dan recall tidak berbeda jauh dengan random 
+forest yaitu semuanya sebesar 97,6%.
+
+- Model terburuk untuk studi kasus ini adalah model yang dibangun dengan algoritma Boosting yang menghasilkan akurasi, 
+precision, f1-score dan recall yang cukup rendah, yaitu secara berturut-turut 59,3%; 35,1%; 44,1%; dan 59,3%.
 
 ### Penyelesaian permasalahan
 1. Setelah melakukan proses EDA, berhasil dilakukan identifikasi fitur-fitur penting dalam klasifikasi resiko kesehatan 
@@ -206,10 +204,12 @@ masih berada di bawah KNN. Random Forest, meskipun kuat dalam banyak kasus, tida
 performanya yang buruk.
 
 ### Kesimpulan 
-Berdasarkan hasil evaluasi, model KNN adalah model terbaik yang dapat dijadikan model untama untuk prediksi klasifikasi 
-resiko kesehatan mental dalam konteks ini. Meskipun model KNN yang didapatkan belum mencapai metrik yang sempurna, model 
-ini cukup andal dalam mengenali pola resiko data yang digunakan.
-
+Berdasarkan hasil evaluasi, model Random Forest adalah model terbaik yang dapat dijadikan model untama untuk prediksi klasifikasi 
+resiko kesehatan mental dalam studi kasus ini. 
+<br/>
+Model Random Forest meskipun memiliki metrik akurasi, recall, precision 
+dan f1-score yang lebih rendah daripada model Random Forest, model ini juga dapat dipertimbangkan untuk digunakan dalam 
+studikasus ini dikarenakan selisih yang tidak terlalu besar. 
 Dengan tujuan yang telah dicapat, diharapkan proyek ini dapat memberikan predeiksi resiko kesehatan mental lebih dini
 dan dapat meningkatkan kesadaran pengguna untuk segera mencari pertolongan apabila terdapat indikasi resiko kesehatan metal yang dialami. 
 ![Grafik Akurasi Model](./gambar/accuracy.png)
