@@ -198,10 +198,9 @@ mental yaitu: seeks_treatment, physical_activity_days,	depression_score,	anxiety
 2. Didalam proyek ini telah dibangun  3 algoritma klasifikasi untuk melakukan prediksi klasifikasi resiko kesehatan mental.
 3 model yang dibangun adalah : KNN, Random Forest, dan Boosting Algorithm. Penggunaan parameter seperti n_neighbors, 
 n_estimators, dan learning_rate juga sudah dioptimalkan sesuai kebutuhan.
-3. Dari evaluasi yang dilakukan, KNN terbukti sebagai model paling optimal, karena memiliki nilai tertinggi untuk semua 
-metrik dibandingkan model lain. Meskipun Boosting mencapai metrix yang hampir sama dengan KNN, F1-score dan Precision-nya 
-masih berada di bawah KNN. Random Forest, meskipun kuat dalam banyak kasus, tidak cocok untuk dataset ini, terbukti dari 
-performanya yang buruk.
+3. Dari evaluasi yang dilakukan, Random Forest terbukti sebagai model paling optimal, karena memiliki nilai tertinggi untuk semua 
+metrik dibandingkan model lain. Meskipun KNN mencapai metrix yang hampir sama dengan Random Forest, semua metrik evaluasi 
+yang dihasilkan masih lebih rendah. 
 
 ### Kesimpulan 
 Berdasarkan hasil evaluasi, model Random Forest adalah model terbaik yang dapat dijadikan model untama untuk prediksi klasifikasi 
