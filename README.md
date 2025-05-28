@@ -199,17 +199,17 @@ mental yaitu: seeks_treatment, physical_activity_days,	depression_score,	anxiety
 3 model yang dibangun adalah : KNN, Random Forest, dan Boosting Algorithm. Penggunaan parameter seperti n_neighbors, 
 n_estimators, dan learning_rate juga sudah dioptimalkan sesuai kebutuhan.
 3. Dari evaluasi yang dilakukan, Random Forest terbukti sebagai model paling optimal, karena memiliki nilai tertinggi untuk semua 
-metrik dibandingkan model lain. Meskipun KNN mencapai metrix yang hampir sama dengan Random Forest, semua metrik evaluasi 
+metrik dibandingkan model lain. Meskipun KNN mencapai metrik yang hampir sama dengan Random Forest, semua metrik evaluasi 
 yang dihasilkan masih lebih rendah. 
 
 ### Kesimpulan 
-Berdasarkan hasil evaluasi, model Random Forest adalah model terbaik yang dapat dijadikan model untama untuk prediksi klasifikasi 
+Berdasarkan hasil evaluasi, model Random Forest adalah model terbaik yang dapat dijadikan model utama untuk prediksi klasifikasi 
 resiko kesehatan mental dalam studi kasus ini. 
 <br/>
 Model Random Forest meskipun memiliki metrik akurasi, recall, precision 
 dan f1-score yang lebih rendah daripada model Random Forest, model ini juga dapat dipertimbangkan untuk digunakan dalam 
-studikasus ini dikarenakan selisih yang tidak terlalu besar. 
-Dengan tujuan yang telah dicapat, diharapkan proyek ini dapat memberikan predeiksi resiko kesehatan mental lebih dini
+studi kasus ini dikarenakan selisih yang tidak terlalu besar. 
+Dengan tujuan yang telah dicapai, diharapkan proyek ini dapat memberikan predeiksi resiko kesehatan mental lebih dini
 dan dapat meningkatkan kesadaran pengguna untuk segera mencari pertolongan apabila terdapat indikasi resiko kesehatan metal yang dialami. 
 ![Grafik Akurasi Model](./gambar/accuracy.png)
 ## Referensi
