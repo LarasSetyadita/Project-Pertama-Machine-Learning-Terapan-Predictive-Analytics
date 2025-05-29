@@ -222,7 +222,7 @@ yang dihasilkan masih lebih rendah.
 Berdasarkan hasil evaluasi, model Random Forest adalah model terbaik yang dapat dijadikan model utama untuk prediksi klasifikasi 
 resiko kesehatan mental dalam studi kasus ini. 
 <br/>
-Model Random Forest meskipun memiliki metrik akurasi, recall, precision 
+Model KNN meskipun memiliki metrik akurasi, recall, precision 
 dan f1-score yang lebih rendah daripada model Random Forest, model ini juga dapat dipertimbangkan untuk digunakan dalam 
 studi kasus ini dikarenakan selisih yang tidak terlalu besar. 
 Dengan tujuan yang telah dicapai, diharapkan proyek ini dapat memberikan prediksi risiko kesehatan mental lebih dini
