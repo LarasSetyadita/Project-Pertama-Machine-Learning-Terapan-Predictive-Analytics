@@ -39,14 +39,15 @@ berdasarkan data.
 paling optimal.
 
 ### Solution Statements
-Dalam upaya mendapatkan model machine learnig yang paling baik untuk memprediksi tingkat resiko penyakit mental, saya 
-membuat 3 model klasifikasi berbeda untuk dibandingkan, yaitu : 
-1. KNN (K-Nearest Neighbor) adalah model machine learning yang bekerja dengan cara membandingkan jarak dari suatu sampel 
-ke sampel pelatihan yang lain dengan memilih sejumlah (k) tetangga terdekat.
-2. Random Forest adalah algoritma machine learning yang digunakan untuk menyelesaikan mesalah klasifikasi dan regresi, 
-random forest adalah kumpulan dari beberapa model decision tree yang mesing-masing memiliki hyperparameter berbeda dan 
-dilatih pada beberapa bagian data yang berbeda. Dengan melakukan beberapa keputusan sekaligus dengan beberapa pohon,
-algoritma random fores sangat cocok untuk digunakan pada kasus klasifikasi. 
+Untuk mencapai tujuan dalam studikasus ini, dilakukan beberapa tahapan solusi sebagai berikut: 
+1. Melakukan eksplorasi dan analisis data untuk memahami karekteristik data dan mengidentifikasi fitur-fitur yang paling
+relevan terhadap tingkat resiko gangguan kesehatan mental. Analisis yang dilakukan mencakup pembersihan data, visualisasi, 
+dan uji korelasi antar fitur di dalam data
+2. Membangun model machine learning klasiikasi untuk memprediksi tingkat resiko kesehatan mental individu. Beberapa model 
+berikut dipilih berdasarkan kemampuannya dalam menangani kasus klasifikasi"
+    - K-Nearest Neighbors (KNN): Mengklasifikasikan data berdasarkan kemiripan dengan tetangga terdekat.
+    - Random Forest: Menggabungkan banyak decision tree untuk meningkatkan stabilitas dan akurasi klasifikasi.
+    - Boosting: Menggabungkan beberapa model sederhana secara berurutan untuk memperbaiki kesalahan prediksi dan meningkatkan performa.
 3. Boosting adalah metode klasifikasi yang menggabungkan banyak model sederhana secara bertahap untuk meningkatkan 
 akurasi dengan fokus memperbaiki kesalahan prediksi sebelumnya.
 
@@ -157,21 +158,29 @@ tingkat produktivitas terendan dengan median sekitar 60-an.
 - Melakukan Scalling dengan StandardScaller untuk membuat data numerik berada pada rentang nilai yang sama. Hal ini dilakukan agar algoritma tidak bias, kecenderungan model seperti KNN menganggap kolom dengan rentang nilai yang tinggi adalah kolom yang penting. 
 
 ## Modeling
-- Model K-Nearest Neighbors (KNN) digunakan untuk mengklasifikasikan risiko kesehatan mental dengan parameter 
+- KNN (K-Nearest Neighbor) adalah model machine learning yang bekerja dengan cara membandingkan jarak dari suatu sampel 
+ke sampel pelatihan yang lain dengan memilih sejumlah (k) tetangga terdekat. Dalam Studi kasus ini,
+Model K-Nearest Neighbors (KNN) digunakan untuk mengklasifikasikan risiko kesehatan mental dengan parameter 
 n_neighbors=10, yang berarti setiap prediksi didasarkan pada 10 tetangga terdekat dalam data latih. KNN adalah 
 algoritma yang sederhana dan mudah dipahami, namun memiliki kelemahan seperti kurang efektif pada data berdimensi 
 tinggi (curse of dimensionality), sensitif terhadap outlier, dan performa yang menurun jika data tidak seimbang. 
 Selain itu, waktu prediksi bisa menjadi lambat pada dataset besar karena perlu menghitung jarak ke seluruh data latih.
 
-- Random Forest merupakan metode ensemble yang menggabungkan hasil dari banyak pohon keputusan untuk meningkatkan 
-akurasi dan mengurangi risiko overfitting. Model ini menggunakan n_estimators=50, artinya 50 pohon dibangun, serta 
+- Random Forest adalah algoritma machine learning yang digunakan untuk menyelesaikan mesalah klasifikasi dan regresi, 
+random forest adalah kumpulan dari beberapa model decision tree yang mesing-masing memiliki hyperparameter berbeda dan 
+dilatih pada beberapa bagian data yang berbeda. Dengan melakukan beberapa keputusan sekaligus dengan beberapa pohon,
+algoritma random fores sangat cocok untuk digunakan pada kasus klasifikasi. 
+Random Forest merupakan metode ensemble yang menggabungkan hasil dari banyak pohon keputusan untuk meningkatkan 
+akurasi dan mengurangi risiko overfitting. Dalam studi kasus ini, model yang dibangun menggunakan n_estimators=50, artinya 50 pohon dibangun, serta 
 max_depth=16 yang membatasi kedalaman maksimal tiap pohon untuk mengontrol kompleksitas model. Parameter 
 random_state=55 digunakan agar hasil pelatihan konsisten dan dapat direproduksi. Sementara itu, n_jobs=-1 memungkinkan 
 model memanfaatkan seluruh inti CPU yang tersedia untuk mempercepat proses pelatihan. Random Forest sangat kuat dalam 
 menangani data kompleks dan tahan terhadap noise, tetapi model ini sulit diinterpretasikan dan membutuhkan sumber daya 
 komputasi yang lebih besar.
 
-- AdaBoostClassifier digunakan sebagai metode boosting, dengan learning_rate=0.05, yang menentukan seberapa besar 
+- Boosting adalah metode klasifikasi yang menggabungkan banyak model sederhana secara bertahap untuk meningkatkan 
+akurasi dengan fokus memperbaiki kesalahan prediksi sebelumnya. Dalam studi kasus ini, AdaBoostClassifier digunakan 
+sebagai metode boosting, dengan learning_rate=0.05, yang menentukan seberapa besar 
 kontribusi setiap model lemah dalam pembelajaran bertahap. Model ini juga menggunakan random_state=55 untuk memastikan 
 hasil yang konsisten. Boosting bekerja dengan memperbaiki kesalahan model sebelumnya secara iteratif, sehingga 
 meningkatkan performa keseluruhan. Namun, AdaBoost dapat menjadi sensitif terhadap outlier dan noise, serta memiliki 
